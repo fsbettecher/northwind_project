@@ -1,0 +1,56 @@
+version: 2
+
+models:
+  - name: stg_orders
+    description: Pedidos limpos e tipificados com status de entrega calculado.
+    columns:
+      - name: order_id
+        tests: [unique, not_null]
+      - name: customer_id
+        tests: [not_null]
+      - name: order_date
+        tests: [not_null]
+      - name: delivery_status
+        tests:
+          - accepted_values:
+              values: ['No Prazo', 'Atrasado', 'Não Enviado']
+
+  - name: stg_order_details
+    description: Itens de pedido com receita bruta, líquida e desconto por linha.
+    columns:
+      - name: order_id
+        tests: [not_null]
+      - name: product_id
+        tests: [not_null]
+      - name: net_revenue
+        tests: [not_null]
+
+  - name: stg_customers
+    description: Clientes limpos com continente calculado.
+    columns:
+      - name: customer_id
+        tests: [unique, not_null]
+      - name: country
+        tests: [not_null]
+
+  - name: stg_products
+    description: Produtos com categoria, fornecedor e status de estoque.
+    columns:
+      - name: product_id
+        tests: [unique, not_null]
+      - name: stock_status
+        tests:
+          - accepted_values:
+              values: ['Sem Estoque', 'Estoque Crítico', 'Estoque Baixo', 'Estoque OK']
+
+  - name: stg_employees
+    description: Vendedores com nome completo e tempo de casa calculado.
+    columns:
+      - name: employee_id
+        tests: [unique, not_null]
+
+  - name: stg_shippers
+    description: Transportadoras.
+    columns:
+      - name: shipper_id
+        tests: [unique, not_null]

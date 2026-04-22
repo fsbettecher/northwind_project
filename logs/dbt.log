@@ -1,0 +1,88 @@
+[0m15:06:26.172422 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002165A9F4EC0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002165B44DBD0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002165CB07ED0>]}
+
+
+============================== 15:06:26.183926 | 2da982ea-b615-44ca-bd5a-ac8dfbb28d45 ==============================
+[0m15:06:26.183926 [info ] [MainThread]: Running with dbt=1.11.8
+[0m15:06:26.184845 [debug] [MainThread]: running dbt with arguments {'version_check': 'True', 'no_print': 'None', 'static_parser': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'target_path': 'None', 'printer_width': '80', 'write_json': 'True', 'introspect': 'True', 'log_cache_events': 'False', 'empty': 'None', 'cache_selected_only': 'False', 'log_format': 'default', 'debug': 'False', 'fail_fast': 'False', 'partial_parse': 'True', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'warn_error': 'None', 'profiles_dir': 'C:\\Users\\Felipe Bettecher\\.dbt', 'invocation_command': 'dbt init northwind_dbt', 'use_colors': 'True', 'indirect_selection': 'eager', 'use_experimental_parser': 'False', 'log_path': 'logs'}
+[0m15:06:26.283229 [info ] [MainThread]: Creating dbt configuration folder at C:\Users\Felipe Bettecher\.dbt
+[0m15:06:26.288192 [debug] [MainThread]: Starter project path: C:\Users\Felipe Bettecher\Env\northwind_project\.venv\Lib\site-packages\dbt\include\starter_project
+[0m15:06:26.371755 [info ] [MainThread]: 
+Your new dbt project "northwind_dbt" was created!
+
+For more information on how to configure the profiles.yml file,
+please consult the dbt documentation here:
+
+  https://docs.getdbt.com/docs/configure-your-profile
+
+One more thing:
+
+Need help? Don't hesitate to reach out to us via GitHub issues or on Slack:
+
+  https://community.getdbt.com/
+
+Happy modeling!
+
+[0m15:06:26.372537 [info ] [MainThread]: Setting up your profile.
+[0m15:08:00.855584 [info ] [MainThread]: Profile northwind_dbt written to C:\Users\Felipe Bettecher\.dbt\profiles.yml using target's profile_template.yml and your supplied values. Run 'dbt debug' to validate the connection.
+[0m15:08:00.857403 [debug] [MainThread]: Command `dbt init` succeeded at 15:08:00.857229 after 94.96 seconds
+[0m15:08:00.857841 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002165CC7D940>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002165CC72570>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002165BA8D8C0>]}
+[0m15:08:00.858253 [debug] [MainThread]: Flushing usage events
+[0m15:08:02.504709 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m15:26:58.287270 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001F8BD124EC0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001F8BDB7DBD0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001F8BF243ED0>]}
+
+
+============================== 15:26:58.295718 | 0457b13d-a7d3-43d1-953b-45f8d015b2d6 ==============================
+[0m15:26:58.295718 [info ] [MainThread]: Running with dbt=1.11.8
+[0m15:26:58.296603 [debug] [MainThread]: running dbt with arguments {'version_check': 'True', 'no_print': 'None', 'static_parser': 'True', 'target_path': 'None', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'printer_width': '80', 'write_json': 'True', 'introspect': 'True', 'log_cache_events': 'False', 'empty': 'None', 'cache_selected_only': 'False', 'fail_fast': 'False', 'debug': 'False', 'log_format': 'default', 'profiles_dir': 'C:\\Users\\Felipe Bettecher\\.dbt', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'warn_error': 'None', 'partial_parse': 'True', 'indirect_selection': 'eager', 'invocation_command': 'dbt debug', 'use_colors': 'True', 'use_experimental_parser': 'False', 'log_path': 'logs'}
+[0m15:26:58.344501 [info ] [MainThread]: dbt version: 1.11.8
+[0m15:26:58.345072 [info ] [MainThread]: python version: 3.13.1
+[0m15:26:58.345582 [info ] [MainThread]: python path: C:\Users\Felipe Bettecher\Env\northwind_project\.venv\Scripts\python.exe
+[0m15:26:58.346107 [info ] [MainThread]: os info: Windows-10-10.0.19045-SP0
+[0m15:26:58.456492 [info ] [MainThread]: Using profiles dir at C:\Users\Felipe Bettecher\.dbt
+[0m15:26:58.457354 [info ] [MainThread]: Using profiles.yml file at C:\Users\Felipe Bettecher\.dbt\profiles.yml
+[0m15:26:58.457913 [info ] [MainThread]: Using dbt_project.yml file at C:\Users\Felipe Bettecher\Env\northwind_project\dbt_project.yml
+[0m15:26:58.460073 [info ] [MainThread]: adapter type: postgres
+[0m15:26:58.461327 [info ] [MainThread]: adapter version: 1.10.0
+[0m15:26:58.461968 [info ] [MainThread]: Configuration:
+[0m15:26:58.462452 [info ] [MainThread]:   profiles.yml file [[32mOK found and valid[0m]
+[0m15:26:58.463161 [info ] [MainThread]:   dbt_project.yml file [[31mERROR not found[0m]
+[0m15:26:58.464014 [info ] [MainThread]: Required dependencies:
+[0m15:26:58.464791 [debug] [MainThread]: Executing "git --help"
+[0m15:26:58.479068 [info ] [MainThread]:  - git [[31mERROR[0m]
+
+[0m15:26:58.481159 [info ] [MainThread]: Connection:
+[0m15:26:58.482209 [info ] [MainThread]:   host: db.ijhpdwjxnsfbfmsvtkso.supabase.co
+[0m15:26:58.482982 [info ] [MainThread]:   port: 5432
+[0m15:26:58.483552 [info ] [MainThread]:   user: postgres
+[0m15:26:58.484030 [info ] [MainThread]:   database: postgres
+[0m15:26:58.484600 [info ] [MainThread]:   schema: public
+[0m15:26:58.487967 [info ] [MainThread]:   connect_timeout: 10
+[0m15:26:58.491613 [info ] [MainThread]:   role: None
+[0m15:26:58.492332 [info ] [MainThread]:   search_path: None
+[0m15:26:58.496008 [info ] [MainThread]:   keepalives_idle: 0
+[0m15:26:58.496690 [info ] [MainThread]:   sslmode: None
+[0m15:26:58.497363 [info ] [MainThread]:   sslcert: None
+[0m15:26:58.497997 [info ] [MainThread]:   sslkey: None
+[0m15:26:58.498673 [info ] [MainThread]:   sslrootcert: None
+[0m15:26:58.499112 [info ] [MainThread]:   application_name: dbt
+[0m15:26:58.499505 [info ] [MainThread]:   retries: 1
+[0m15:26:58.500159 [info ] [MainThread]: Registered adapter: postgres=1.10.0
+[0m15:26:59.075578 [debug] [MainThread]: Acquiring new postgres connection 'debug'
+[0m15:26:59.305300 [debug] [MainThread]: Using postgres connection "debug"
+[0m15:26:59.305885 [debug] [MainThread]: On debug: select 1 as id
+[0m15:26:59.306305 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m15:27:01.857260 [debug] [MainThread]: SQL status: SELECT 1 in 2.551 seconds
+[0m15:27:01.859058 [debug] [MainThread]: On debug: Close
+[0m15:27:01.860351 [info ] [MainThread]:   Connection test: [[32mOK connection ok[0m]
+
+[0m15:27:01.874882 [info ] [MainThread]: [31m2 checks failed:[0m
+[0m15:27:01.876934 [info ] [MainThread]: Project loading failed for the following reason:
+ project path <C:\Users\Felipe Bettecher\Env\northwind_project\dbt_project.yml> not found
+
+[0m15:27:01.877579 [info ] [MainThread]: Error from git --help: Could not find command, ensure it is in the user's PATH and that the user has permissions to run it: "git"
+
+[0m15:27:01.881947 [debug] [MainThread]: Command `dbt debug` failed at 15:27:01.881739 after 3.87 seconds
+[0m15:27:01.882512 [debug] [MainThread]: Connection 'debug' was properly closed.
+[0m15:27:01.883013 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001F8BF46F950>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001F8BF832210>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001F8BF4658C0>]}
+[0m15:27:01.883684 [debug] [MainThread]: Flushing usage events
+[0m15:27:03.390254 [debug] [MainThread]: An error was encountered while trying to flush usage events

@@ -1,0 +1,48 @@
+version: 2
+
+models:
+  - name: fct_orders
+    description: Tabela fato principal com 1 linha por pedido x produto.
+    columns:
+      - name: order_id
+        tests: [not_null]
+      - name: product_id
+        tests: [not_null]
+      - name: net_revenue
+        tests: [not_null]
+
+  - name: kpi_revenue_monthly
+    description: Receita mensal agregada com variação MoM.
+    columns:
+      - name: order_year_month
+        tests: [unique, not_null]
+
+  - name: kpi_customers_rfm
+    description: Segmentação RFM de clientes.
+    columns:
+      - name: customer_id
+        tests: [unique, not_null]
+
+  - name: kpi_products_performance
+    description: Performance de produtos com receita, ranking e classificação ABC.
+    columns:
+      - name: product_id
+        tests: [unique, not_null]
+
+  - name: kpi_employees_performance
+    description: Performance da equipe de vendas.
+    columns:
+      - name: employee_id
+        tests: [unique, not_null]
+
+  - name: kpi_geo_revenue
+    description: Receita por país e continente.
+    columns:
+      - name: country
+        tests: [unique, not_null]
+
+  - name: kpi_logistics
+    description: SLA por transportadora com prazo médio e percentual on-time.
+    columns:
+      - name: shipper_id
+        tests: [unique, not_null]
