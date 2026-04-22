@@ -16,7 +16,7 @@ models:
               values: ['No Prazo', 'Atrasado', 'Não Enviado']
 
   - name: stg_order_details
-    description: Itens de pedido com receita bruta, líquida e desconto por linha.
+    description: Itens de pedido com receita bruta, líquida e descontos.
     columns:
       - name: order_id
         tests: [not_null]
