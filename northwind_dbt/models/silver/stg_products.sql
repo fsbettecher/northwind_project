@@ -25,10 +25,10 @@ ajustado AS (
             ELSE false
         END as is_discontinued, -- criando um booleano para produtos descontinuados
         CASE
-            WHEN f.units_in_stock::integer = 0 THEN 'Sem Estoque'
-            WHEN f.units_in_stock::integer <= f.reorder_level::integer THEN 'Estoque Crítico'
-            WHEN f.units_in_stock::integer <= f.reorder_level::integer * 2 THEN 'Estoque Baixo' -- Esse valor pode ser ajustável dependendo do negócio
-            ELSE 'Estoque OK'
+            WHEN f.units_in_stock::integer = 0 THEN 'Out of Stock'
+            WHEN f.units_in_stock::integer <= f.reorder_level::integer THEN 'Critical Stock'
+            WHEN f.units_in_stock::integer <= f.reorder_level::integer * 2 THEN 'Low Stock' -- Esse valor pode ser ajustável dependendo do negócio
+            ELSE 'In Stock'
         END as stock_status -- criando um status de estoque dos produtos
     FROM
         source f

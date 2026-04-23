@@ -42,10 +42,10 @@ rfm_segment as (
         *,
         (r_score + f_score + m_score) as rfm_total,
         CASE
-            WHEN r_score + f_score + m_score >= 10 THEN 'Campeão'
-            WHEN r_score + f_score + m_score >= 8  THEN 'Fiel'
-            WHEN r_score + f_score + m_score >= 5  THEN 'Potencial'
-            ELSE 'Em Risco'
+            WHEN r_score + f_score + m_score >= 10 THEN 'Champion'
+            WHEN r_score + f_score + m_score >= 8  THEN 'Loyal Customer'
+            WHEN r_score + f_score + m_score >= 5  THEN 'Potential Customer'
+            ELSE 'At Risk'
         END as rfm_segment,
         CASE
             WHEN r_score + f_score + m_score >= 10 THEN 4

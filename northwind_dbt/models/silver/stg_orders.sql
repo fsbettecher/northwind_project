@@ -20,9 +20,9 @@ ajustado AS (
         (shipped_date::date - order_date::date) as days_to_ship,
         (required_date::date - order_date::date) as days_to_deadline,
         CASE
-            WHEN shipped_date is null THEN 'Não Enviado'
-            WHEN shipped_date::date > required_date::date THEN 'Atrasado'
-            ELSE 'No Prazo'
+            WHEN shipped_date is null THEN 'Not Shipped'
+            WHEN shipped_date::date > required_date::date THEN 'Late'
+            ELSE 'On Time'
         END as delivery_status, -- criando um status de entrega
         CASE
             WHEN shipped_date::date > required_date::date THEN true
