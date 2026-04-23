@@ -2,7 +2,7 @@ version: 2
 
 models:
   - name: stg_orders
-    description: Pedidos limpos e tipificados com status de entrega calculado.
+    description: Pedidos limpos com status de entrega, campos de tempo e prazo calculados.
     columns:
       - name: order_id
         tests: [unique, not_null]
@@ -26,7 +26,7 @@ models:
         tests: [not_null]
 
   - name: stg_customers
-    description: Clientes limpos com continente calculado.
+    description: Clientes limpos com continente calculado para agrupamento geográfico.
     columns:
       - name: customer_id
         tests: [unique, not_null]

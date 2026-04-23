@@ -16,21 +16,20 @@ ajustado AS (
         c.category_name::varchar as category_name,
         s.company_name::varchar as supplier_name,
         f.quantity_per_unit::varchar as quantity_per_unit,
-        f.unit_price::numeric(10,2) as unit_price,
+        f.unit_price::numeric(10, 2) as unit_price, -- limitando e arredondando os números
         f.units_in_stock::integer as units_in_stock,
         f.units_on_order::integer as units_on_order,
         f.reorder_level::integer as reorder_level,
-        f.discontinued::integer as discontinued,
         CASE
             WHEN f.discontinued::integer = 1 THEN true
             ELSE false
-        END as is_discontinued,
+        END as is_discontinued, -- criando um booleano para produtos descontinuados
         CASE
             WHEN f.units_in_stock::integer = 0 THEN 'Sem Estoque'
             WHEN f.units_in_stock::integer <= f.reorder_level::integer THEN 'Estoque Crítico'
-            WHEN f.units_in_stock::integer <= f.reorder_level::integer * 2 THEN 'Estoque Baixo'
+            WHEN f.units_in_stock::integer <= f.reorder_level::integer * 2 THEN 'Estoque Baixo' -- Esse valor pode ser ajustável dependendo do negócio
             ELSE 'Estoque OK'
-        END as stock_status
+        END as stock_status -- criando um status de estoque dos produtos
     FROM
         source f
     LEFT JOIN

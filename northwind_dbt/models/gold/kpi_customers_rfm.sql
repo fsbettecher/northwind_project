@@ -1,71 +1,61 @@
-with snapshot_date as (
-    select max(order_date) + interval '1 day' as ref_date
-    from {{ ref('stg_orders') }}
+WITH snapshot_date AS (
+    SELECT
+        MAX(order_date) + interval '1 day' as ref_date
+    FROM
+        {{ ref('stg_orders') }}
 ),
-
 rfm_raw as (
-    select
+    SELECT
         o.customer_id,
-        c.company_name                                  as customer_name,
+        c.company_name as customer_name,
         c.country,
-        c.continent,
-
-        (select ref_date from snapshot_date)::date
-            - max(o.order_date)                         as recency_days,
-
-        count(distinct o.order_id)                      as frequency,
-
-        round(sum(d.net_revenue)::numeric, 2)           as monetary,
-
-        min(o.order_date)                               as first_order_date,
-        max(o.order_date)                               as last_order_date,
-
-        round(sum(d.net_revenue) / count(distinct o.order_id), 2)
-                                                        as avg_order_value
-
-    from {{ ref('stg_orders') }} o
-    inner join {{ ref('stg_order_details') }} d on o.order_id = d.order_id
-    inner join {{ ref('stg_customers') }} c on o.customer_id = c.customer_id
-    group by 1, 2, 3, 4
+        (SELECT ref_date FROM snapshot_date)::date - max(o.order_date) as recency_days,
+        COUNT(DISTINCT o.order_id) as frequency,
+        ROUND(SUM(d.net_revenue)::numeric, 2) as monetary,
+        MIN(o.order_date) as first_order_date,
+        MAX(o.order_date) as last_order_date,
+        ROUND(SUM(d.net_revenue) / COUNT(DISTINCT o.order_id), 2) as avg_order_value
+    FROM
+        {{ ref('stg_orders') }} o
+    INNER JOIN
+        {{ ref('stg_order_details') }} d on o.order_id = d.order_id
+    INNER JOIN
+        {{ ref('stg_customers') }} c on o.customer_id = c.customer_id
+    GROUP BY
+        o.customer_id, c.company_name, c.country
 ),
-
 rfm_scored as (
-    select
+    SELECT
         *,
-        case
-            when recency_days <= 30  then 4
-            when recency_days <= 60  then 3
-            when recency_days <= 120 then 2
-            else 1
-        end                                             as r_score,
-
-        ntile(4) over (order by frequency asc)          as f_score,
-        ntile(4) over (order by monetary asc)           as m_score
-
+        CASE
+            WHEN recency_days <= 30  THEN 4
+            WHEN recency_days <= 60  THEN 3
+            WHEN recency_days <= 120 THEN 2
+            ELSE 1
+        END as r_score,
+        NTILE(4) OVER (ORDER BY frequency asc) as f_score,
+        NTILE(4) OVER (ORDER BY monetary asc) as m_score
     from rfm_raw
 ),
-
 rfm_segment as (
-    select
+    SELECT
         *,
-        (r_score + f_score + m_score)                   as rfm_total,
-
-        case
-            when r_score + f_score + m_score >= 10 then 'Campeão'
-            when r_score + f_score + m_score >= 8  then 'Fiel'
-            when r_score + f_score + m_score >= 5  then 'Potencial'
-            else                                        'Em Risco'
-        end                                             as rfm_segment,
-
-        case
-            when r_score + f_score + m_score >= 10 then 4
-            when r_score + f_score + m_score >= 8  then 3
-            when r_score + f_score + m_score >= 5  then 2
-            else                                        1
-        end                                             as segment_priority
-
-    from rfm_scored
+        (r_score + f_score + m_score) as rfm_total,
+        CASE
+            WHEN r_score + f_score + m_score >= 10 THEN 'Campeão'
+            WHEN r_score + f_score + m_score >= 8  THEN 'Fiel'
+            WHEN r_score + f_score + m_score >= 5  THEN 'Potencial'
+            ELSE 'Em Risco'
+        END as rfm_segment,
+        CASE
+            WHEN r_score + f_score + m_score >= 10 THEN 4
+            WHEN r_score + f_score + m_score >= 8  THEN 3
+            WHEN r_score + f_score + m_score >= 5  THEN 2
+            ELSE 1
+        END as segment_priority
+    FROM
+        rfm_scored
 )
-
-select * from rfm_segment
-order by monetary desc
+SELECT * FROM rfm_segment
+ORDER BY
+    monetary DESC
