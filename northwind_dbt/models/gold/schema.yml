@@ -12,7 +12,7 @@ models:
       - name: net_revenue
         tests: [not_null]
 
-  - name: kpi_customers_rfm
+  - name: customers_rfm
     description: >
       Tabela modelada por cliente. Criada separadamente, pois exige agregação
       por cliente e quebraria a lógica da fct_orders.
